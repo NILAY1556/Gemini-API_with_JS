@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCodeSolutions</title>
+    <style>
+        .kala{
+            background-color: #313131;
+            color: #fff;
+        }
+        .card{
+            background-color: #000;
+            color : #fff;
+            margin: 10px;
+            padding : 10px;
+            border : 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #javab-box{
+            color: #fff;
+            margin: 0 auto;
+            margin-top: 20px;
+            border: 1px double #ccc;
+        }
+
+        .input{
+            margin : 0 auto;
+            margin-top : 10px;
+            margin-left: 20px;
+            margin-bottom: 10px;
+            height: 200px;
+            width: 80%;
+            display: block;
+            border-radius: 5px;
+        }
+    </style>
+    <script type="module">
+        import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+
+        const API_KEY = "AIzaSyDGGhisXEEN3YU76TJuOtXzW1F6fhqvo5Y";
+        const genAI = new GoogleGenerativeAI(API_KEY);
+
+        window.run = async function() {
+            try {
+                const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+                const chat = model.startChat({
+                    history: [
+                        {
+                            role: "user",
+                            parts: "write add two numbers program in js"
+                        },
+                        {
+                            role: "model",
+                            parts: "what else do you want to know?"
+                        }
+                    ]
+                });
+
+                const message = document.getElementById('message').value || "hello can you write a any basic program in js?";
+                const result = await chat.sendMessage(message);
+                const response = await result.response;
+                const text = response.text();
+
+                document.getElementById('javab-box').innerHTML = text;
+            } catch (error) {
+                console.error("Error:", error);
+                document.getElementById('javab-box').innerHTML = "An error occurred. Please try again.";
+            }
+        };
+    </script>
+</head>
+<body class="kala">
+    <h1>hello you lazy , give your question</h1>
+    
+    <form action="">
+        <label for="message">here..........................|</label>
+        <textarea class="input" id="message" cols="30" rows="10" style="border-radius: 7px;"></textarea>
+        <button type="button" onclick="run()">Javab aa dabava thi malse</button>
+        <div id="javab-box"></div>
+    </form>
+</body>
+</html>

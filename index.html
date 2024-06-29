@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCodeSolutions</title>
+    <style>
+        
+        .kala{
+            background-color: #94d2bd;
+            color: #ffb703;
+        }
+        .card{
+            background-color: #000;
+            color : #fff;
+            margin: 10px;
+            padding : 10px;
+            border : 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #javab-box{
+            color: #fff;
+        }
+
+        .input-container {
+            position: relative;
+            display: flex;
+            justify-items: center;
+            align-items: center;
+        }
+
+        .input {
+            padding: 10px;
+            height: 90px;
+            width: 70%;
+            margin: 20px auto;
+            margin-left: 30px ;
+            background-color: #fff;
+            border: 2px solid #E1E1E1;
+            border-top: none;
+            border-bottom: none;
+            font-size: 14px;
+            /* background: transparent; */
+            outline: none;
+            box-shadow: 7px 7px 0px 0px #0B2447;
+            transition: all 0.5s;
+        }
+
+        .card {
+        width: 70%;
+        height: 400px;
+        margin: 0 auto;
+        background-color: #8d99ae;
+        /* background: linear-gradient(0deg, #000, #272727); */
+        border-radius: 8px;
+        z-index: 1;
+        }
+
+        .tools {
+        display: flex;
+        align-items: center;
+        padding: 9px;
+        }
+
+        .circle {
+        padding: 0 4px;
+        }
+
+        .box {
+        display: inline-block;
+        align-items: center;
+        width: 10px;
+        height: 10px;
+        padding: 1px;
+        border-radius: 50%;
+        }
+
+        .red {
+        background-color: #ff605c;
+        }
+
+        .yellow {
+        background-color: #ffbd44;
+        }
+
+        .green {
+        background-color: #00ca4e;
+        }
+
+        button {
+            color: #090909;
+            padding: 0.4em 1.4em;
+            margin : 10px 10px;
+            font-size: 16px;
+            border-radius: 0.5em;
+            background: #e8e8e8;
+            cursor: pointer;
+            border: 1px solid #e8e8e8;
+            transition: all 0.3s;
+            box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+        }
+
+        button:active {
+            color: #666;
+            box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            --color: #E1E1E1;
+            background-color: #F3F3F3;
+            background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent),
+                linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent);
+            background-size: 55px 55px;
+        }
+
+        @keyframes square-animation {
+        0% {
+        left: 0;
+        top: 0;
+        }
+
+        10.5% {
+        left: 0;
+        top: 0;
+        }
+
+        12.5% {
+        left: 32px;
+        top: 0;
+        }
+
+        23% {
+        left: 32px;
+        top: 0;
+        }
+
+        25% {
+        left: 64px;
+        top: 0;
+        }
+
+        35.5% {
+        left: 64px;
+        top: 0;
+        }
+
+        37.5% {
+        left: 64px;
+        top: 32px;
+        }
+
+        48% {
+        left: 64px;
+        top: 32px;
+        }
+
+        50% {
+        left: 32px;
+        top: 32px;
+        }
+
+        60.5% {
+        left: 32px;
+        top: 32px;
+        }
+
+        62.5% {
+        left: 32px;
+        top: 64px;
+        }
+
+        73% {
+        left: 32px;
+        top: 64px;
+        }
+
+        75% {
+        left: 0;
+        top: 64px;
+        }
+
+        85.5% {
+        left: 0;
+        top: 64px;
+        }
+
+        87.5% {
+        left: 0;
+        top: 32px;
+        }
+
+        98% {
+        left: 0;
+        top: 32px;
+        }
+
+        100% {
+        left: 0;
+        top: 0;
+        }
+        }
+
+        .loader {
+        position: relative;
+        width: 96px;
+        height: 96px;
+        transform: rotate(45deg);
+        }
+
+        .loader-square {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 28px;
+        height: 28px;
+        margin: 2px;
+        border-radius: 0px;
+        background: white;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        animation: square-animation 10s ease-in-out infinite both;
+        }
+
+        .loader-square:nth-of-type(0) {
+        animation-delay: 0s;
+        }
+
+        .loader-square:nth-of-type(1) {
+        animation-delay: -1.4285714286s;
+        }
+
+        .loader-square:nth-of-type(2) {
+        animation-delay: -2.8571428571s;
+        }
+
+        .loader-square:nth-of-type(3) {
+        animation-delay: -4.2857142857s;
+        }
+
+        .loader-square:nth-of-type(4) {
+        animation-delay: -5.7142857143s;
+        }
+
+        .loader-square:nth-of-type(5) {
+        animation-delay: -7.1428571429s;
+        }
+
+        .loader-square:nth-of-type(6) {
+        animation-delay: -8.5714285714s;
+        }
+
+        .loader-square:nth-of-type(7) {
+        animation-delay: -10s;
+        }
+
+    </style>
+    <script type="module">
+        import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+
+        const API_KEY = "AIzaSyDGGhisXEEN3YU76TJuOtXzW1F6fhqvo5Y";
+        const genAI = new GoogleGenerativeAI(API_KEY);
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+        window.run = async function() {
+            try {
+                
+                const prompt = document.getElementById('message').value;
+                const result = await model.generateContent(prompt);
+                const response = await result.response;
+                const text = response.text();
+                console.log(text)
+                if(!text){
+                    load = ''
+                    load += '<div class="loader">'
+                    load +='<div class="loader-square"></div>'
+                    load += '<div class="loader-square"></div>'
+                    load += '<div class="loader-square"></div>'
+                    load += '<div class="loader-square"></div>'
+                    load += '<div class="loader-square"></div>'
+                    load +='<div class="loader-square"></div>'
+                    load +='<div class="loader-square"></div>'
+                    load +='</div>'
+                    document.getElementById('loader').innerHTML = load;
+                }
+                document.getElementById('javab-box').innerHTML = text;
+            } catch (error) {
+                console.error("Error:", error);
+                document.getElementById('javab-box').innerHTML = "An error occurred. Please try again.";
+            }
+        };
+    </script>
+</head>
+<body class="container">
+    <div class="container">
+    <h1>hello you lazy , give your question</h1>
+    
+    <form action="">
+        <label for="message">here..........................|</label>
+        <!-- <textarea class="input" id="message" cols="30" rows="10" style="border-radius: 7px;"></textarea> -->
+        <div class="input-container">
+            <textarea class="input" id="message" name="textarea" type="textarea" cols="20" rows="5"></textarea>
+            <!-- <label class="label" for="input"></label> -->
+            <!-- <div class="topline"></div>
+            <div class="underline"></div> -->
+            </div>
+        <button type="button" onclick="run()">Javab aa dabava thi malse</button>
+        <!-- <div id="javab-box"></div> -->
+         <div id="loader"></div>
+        <div class="card">
+            <div class="tools">
+              <div class="circle">
+                <span class="red box"></span>
+              </div>
+              <div class="circle">
+                <span class="yellow box"></span>
+              </div>
+              <div class="circle">
+                <span class="green box"></span>
+              </div>
+            </div>
+            <div class="card__content" id="javab-box">
+                
+            </div>
+          </div>
+    </form>
+    </div>
+</body>
+</html>
